@@ -17,5 +17,5 @@ export interface IGetTodo {
 }
 
 export interface IDeleteTodo {
-    id: string;
-  }
+  id: string;
+}

@@ -1,14 +1,14 @@
 import Button from "@/components/Button/Button";
+import { authenticate, register } from "@/services/authService";
 import styles from "@/styles/Home.module.css";
+import { LoginFormValues, RegisterFormValues } from "@/types/auth.types";
 import { yupResolver } from "@hookform/resolvers/yup";
+import Router from "next/router";
 import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import * as yup from "yup";
 
-import * as yupLocale from "../helpers/locale";
-import { LoginFormValues, RegisterFormValues } from "@/types/auth.types";
-import { authenticate, register } from "@/services/authService";
-import Router from "next/router";
+import * as yupLocale from "../config/locale";
 
 yup.setLocale(yupLocale);
 

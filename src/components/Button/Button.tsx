@@ -1,5 +1,7 @@
 import React from "react";
+
 import styles from "./Button.module.css";
+
 interface Props {
   children: React.ReactNode;
   onClick: any;
