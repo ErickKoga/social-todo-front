@@ -17,7 +17,7 @@ export async function register(
 export async function authenticate(
   credentials: IAuthenticate
 ): Promise<{ accessToken: string }> {
-  const response = await fetch(`${ENDPOINTS.AUTH}/auth`, {
+  const response = await fetch(`${ENDPOINTS.AUTH}`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(credentials),

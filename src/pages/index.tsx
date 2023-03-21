@@ -1,14 +1,14 @@
 import Button from "@/components/Button/Button";
-import { authenticate, register } from "@/services/authService";
 import styles from "@/styles/Home.module.css";
-import { LoginFormValues, RegisterFormValues } from "@/types/auth.types";
 import { yupResolver } from "@hookform/resolvers/yup";
-import Router from "next/router";
 import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import * as yup from "yup";
 
 import * as yupLocale from "../config/locale";
+import { LoginFormValues, RegisterFormValues } from "@/types/auth.types";
+import { authenticate, register } from "@/services/authService";
+import Router from "next/router";
 
 yup.setLocale(yupLocale);
 
@@ -50,18 +50,21 @@ export default function LoginPage() {
     setIsRegisterModalOpen(false);
   };
 
-  const handleLoginSubmit: SubmitHandler<LoginFormValues> = (data) => {
-    authenticate(data).then((response) =>
-      localStorage.setItem("accessToken", response.accessToken)
-    );
-    Router.push("/home");
+  const handleLoginSubmit: SubmitHandler<LoginFormValues> = async (data) => {
+    const token: { accessToken: string } = await authenticate(data);
+    console.log(token);
+    localStorage.setItem("accessToken", token.accessToken);
+
+    // Router.push("/home");
   };
 
-  const handleRegisterSubmit: SubmitHandler<RegisterFormValues> = (data) => {
-    register(data).then((response) =>
-      localStorage.setItem("accessToken", response.accessToken)
-    );
-    Router.push("/home");
+  const handleRegisterSubmit: SubmitHandler<RegisterFormValues> = async (
+    data
+  ) => {
+    const token: { accessToken: string } = await register(data);
+    console.log(token);
+    localStorage.setItem("accessToken", token.accessToken);
+    // Router.push("/home");
     handleCloseRegisterModal();
   };
 
