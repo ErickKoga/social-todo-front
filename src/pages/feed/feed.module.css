@@ -1,0 +1,25 @@
+.container {
+  background-image: url(../../assets/home-background.webp);
+  background-size: cover;
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  padding: 1rem;
+}
+
+.content {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 100%;
+  background-color: var(--color-bw7);
+  padding: 1rem;
+}
+
+.feed {
+  width: 100%;
+}
+
+.todo {
+  width: 20rem;
+}

@@ -9,6 +9,7 @@ import * as yupLocale from "../config/locale";
 import { LoginFormValues, RegisterFormValues } from "@/types/auth.types";
 import { authenticate, register } from "@/services/authService";
 import Router from "next/router";
+import Head from "next/head";
 
 yup.setLocale(yupLocale);
 
@@ -52,24 +53,30 @@ export default function LoginPage() {
 
   const handleLoginSubmit: SubmitHandler<LoginFormValues> = async (data) => {
     const token: { accessToken: string } = await authenticate(data);
-    console.log(token);
-    localStorage.setItem("accessToken", token.accessToken);
 
-    // Router.push("/home");
+    localStorage.setItem("accessToken", token.accessToken);
+    Router.push("/feed");
   };
 
   const handleRegisterSubmit: SubmitHandler<RegisterFormValues> = async (
     data
   ) => {
     const token: { accessToken: string } = await register(data);
-    console.log(token);
     localStorage.setItem("accessToken", token.accessToken);
-    // Router.push("/home");
+    Router.push("/feed");
     handleCloseRegisterModal();
   };
 
   return (
     <div className={styles.container}>
+      <Head>
+        <title>Social ToDo</title>
+        <meta
+          name="Social ToDo"
+          content="Página inicial do teste de proficiência."
+        />
+        <link rel="icon" href="/favicon.svg" />
+      </Head>
       <form
         noValidate
         className={styles.authForm}
