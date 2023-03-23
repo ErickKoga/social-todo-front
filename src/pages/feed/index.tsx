@@ -11,6 +11,8 @@ import jwt_decode from "jwt-decode";
 import FormInput from "@/components/FormInput/FormInput";
 import TodoCard from "@/components/TodoCard/TodoCard";
 import * as yupLocale from "../../config/locale";
+import { getAllUsers } from "@/services/userService";
+import { IUser } from "@/types/user.types";
 
 yup.setLocale(yupLocale);
 
@@ -22,6 +24,7 @@ const createTodoSchema = yup.object().shape({
 export default function FeedPage() {
   const [userId, setUserId] = useState<string>("");
   const [todos, setTodos] = useState<ITodo[]>([]);
+  const [users, setUsers] = useState<IUser[]>([]);
 
   const {
     register: createTodoFormRegister,
@@ -68,6 +71,7 @@ export default function FeedPage() {
     const token = localStorage.getItem("accessToken");
     const payload: { id: string } = jwt_decode(token ?? "");
     setUserId(payload.id);
+
     const fetchTodos = async () => {
       try {
         const fetchedTodos = await getAllTodo();
@@ -77,6 +81,16 @@ export default function FeedPage() {
       }
     };
     fetchTodos();
+
+    const fetchUsers = async () => {
+      try {
+        const fetchedUsers = await getAllUsers();
+        setUsers(fetchedUsers);
+      } catch (error) {
+        console.error("Failed to fetch users: ", error);
+      }
+    };
+    fetchUsers();
   }, []);
 
   return (
@@ -91,6 +105,11 @@ export default function FeedPage() {
                 key={todoItem.id}
                 todo={todoItem}
                 onCompletion={handleTodoCompletion}
+                ownerName={
+                  users.find((user) => {
+                    return user.id === todoItem.ownerId;
+                  })?.name || "Desconhecido"
+                }
               />
             ))}
           </div>
@@ -134,6 +153,11 @@ export default function FeedPage() {
                   <TodoCard
                     key={todoItem.id}
                     todo={todoItem}
+                    ownerName={
+                      users.find((user) => {
+                        return user.id === todoItem.ownerId;
+                      })?.name || "Desconhecido"
+                    }
                     onCompletion={handleTodoCompletion}
                   />
                 ))}

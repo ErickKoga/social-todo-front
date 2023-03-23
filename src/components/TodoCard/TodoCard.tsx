@@ -1,14 +1,15 @@
-import { FaRegCheckCircle, FaRegCircle } from "react-icons/fa";
+import { FaRegCheckCircle, FaRegCircle, FaUser } from "react-icons/fa";
 
 import { ITodo } from "../../types/todo.types";
 import styles from "./TodoCard.module.css";
 
 interface Props {
   todo: ITodo;
+  ownerName: string;
   onCompletion: (todo: ITodo) => void;
 }
 
-const TodoCard: React.FC<Props> = ({ todo, onCompletion }) => {
+const TodoCard: React.FC<Props> = ({ todo, ownerName, onCompletion }) => {
   const date: Date = new Date(todo.createdAt);
 
   return (
@@ -20,7 +21,13 @@ const TodoCard: React.FC<Props> = ({ todo, onCompletion }) => {
       <h6>{todo.title}</h6>
       <p>{todo.description}</p>
       <span>
-        {todo.completed ? <FaRegCheckCircle /> : <FaRegCircle />} Concluído
+        <p>
+          {todo.completed ? <FaRegCheckCircle /> : <FaRegCircle />} Concluído
+        </p>
+        <p className={styles.ownerName}>
+          {`${ownerName} `}
+          <FaUser />
+        </p>
       </span>
     </div>
   );

@@ -10,6 +10,15 @@
   cursor: pointer;
 }
 
+.todoCard span {
+  display: inline-flex;
+  justify-content: space-between;
+}
+
+.ownerName {
+  font-weight: 600;
+}
+
 .completed {
   background-color: var(--color-bw5);
 }
