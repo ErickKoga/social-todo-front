@@ -89,3 +89,13 @@ ol {
   padding: 0;
   list-style: none;
 }
+
+.title {
+  width: 100%;
+  text-align: center;
+  margin: 0 auto;
+  padding: 1rem;
+  background-color: var(--color-secondary-dark);
+  color: var(--color-bw9);
+  border-radius: 0.5rem;
+}

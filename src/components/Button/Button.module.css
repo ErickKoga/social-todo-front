@@ -6,6 +6,8 @@
   font-weight: 500;
   outline: none;
   transition: 0.25s;
+  color: var(--color-bw9);
+  font-weight: 500;
 }
 
 .primary-dark {

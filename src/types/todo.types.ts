@@ -1,21 +1,27 @@
-export interface ICreateTodo {
-  ownerId: string;
-  title: string;
-  description: string;
-  completed: string;
-}
-
-export interface IGetTodo {
+export interface ITodo {
   id: string;
   ownerId: string;
   title: string;
   description: string;
-  completed: string;
+  completed: boolean;
   createdAt: Date;
   updatedAt: Date;
   deletedAt: Date;
 }
 
-export interface IDeleteTodo {
-  id: string;
+export interface CreateTodoFormValues {
+  title: string;
+  description?: string;
+}
+
+export interface ICreateTodo {
+  ownerId: string;
+  title: string;
+  description?: string;
+}
+
+export interface IUpdateTodo {
+  title?: string;
+  description?: string;
+  completed?: boolean;
 }

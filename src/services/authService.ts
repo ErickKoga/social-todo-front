@@ -4,7 +4,6 @@ import { IAuthenticate, IRegister } from "@/types/auth.types";
 export async function register(
   userData: IRegister
 ): Promise<{ accessToken: string }> {
-  console.log(ENDPOINTS);
   const response = await fetch(`${ENDPOINTS.AUTH}/register`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },

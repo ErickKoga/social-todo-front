@@ -10,6 +10,7 @@ import { LoginFormValues, RegisterFormValues } from "@/types/auth.types";
 import { authenticate, register } from "@/services/authService";
 import Router from "next/router";
 import Head from "next/head";
+import FormInput from "@/components/FormInput/FormInput";
 
 yup.setLocale(yupLocale);
 
@@ -75,7 +76,6 @@ export default function LoginPage() {
           name="Social ToDo"
           content="Página inicial do teste de proficiência."
         />
-        <link rel="icon" href="/favicon.svg" />
       </Head>
       <form
         noValidate
@@ -83,11 +83,10 @@ export default function LoginPage() {
         onSubmit={loginHandleSubmit(handleLoginSubmit)}
       >
         <div className={styles.inputArea}>
-          <input
-            className={styles.inputField}
+          <FormInput
             placeholder="E-mail"
             type="email"
-            {...loginFormRegister("email")}
+            register={loginFormRegister("email")}
           />
           {loginErrors.email && (
             <span className={styles.authFormError}>
@@ -96,11 +95,10 @@ export default function LoginPage() {
           )}
         </div>
         <div className={styles.inputArea}>
-          <input
-            className={styles.inputField}
+          <FormInput
             placeholder="Senha"
             type="password"
-            {...loginFormRegister("password")}
+            register={loginFormRegister("password")}
           />
           {loginErrors.password && (
             <span className={styles.authFormError}>
@@ -133,11 +131,10 @@ export default function LoginPage() {
                 </button>
               </div>
               <div className={styles.inputArea}>
-                <input
-                  className={styles.inputField}
+                <FormInput
                   placeholder="Nome"
                   type="text"
-                  {...registerFormRegister("name")}
+                  register={registerFormRegister("name")}
                 />
                 {registerErrors.name && (
                   <span className={styles.registerFormError}>
@@ -146,11 +143,10 @@ export default function LoginPage() {
                 )}
               </div>
               <div className={styles.inputArea}>
-                <input
-                  className={styles.inputField}
+                <FormInput
                   placeholder="E-mail"
                   type="email"
-                  {...registerFormRegister("email")}
+                  register={registerFormRegister("email")}
                 />
                 {registerErrors.email && (
                   <span className={styles.registerFormError}>
@@ -159,11 +155,10 @@ export default function LoginPage() {
                 )}
               </div>
               <div className={styles.inputArea}>
-                <input
-                  className={styles.inputField}
+                <FormInput
                   placeholder="Senha"
                   type="password"
-                  {...registerFormRegister("password")}
+                  register={registerFormRegister("password")}
                 />
                 {registerErrors.password && (
                   <span className={styles.registerFormError}>

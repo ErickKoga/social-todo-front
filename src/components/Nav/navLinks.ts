@@ -1,12 +1,12 @@
 export const navLinks = [
   {
     navDescription: "Feed",
-    navPath: "#feed",
+    navPath: "/feed",
     navIcon: "FaHome",
   },
   {
-    navDescription: "Novo",
-    navPath: "#about",
+    navDescription: "Usuários",
+    navPath: "/users",
     navIcon: "FaRegUserCircle",
-  }
+  },
 ];
