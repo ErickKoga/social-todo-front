@@ -54,3 +54,23 @@
   box-sizing: border-box;
   overflow-y: scroll;
 }
+
+@media only screen and (max-width: 720px) {
+  .container {
+    padding-top: 5rem;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  .content {
+    flex-direction: column;
+  }
+
+  .feed {
+    height: 80vh;
+  }
+
+  .todo {
+    width: 100%;
+  }
+}
